@@ -62,7 +62,10 @@ public:
     string passEmpl();
     bool maxVende();
     void setVende(string name, string l_name, string user, string pass);
-
+    string nameVende(int i);
+    string lnameVende(int i);
+    string userVende(int i);
+    string passVende(int i);
 
     // Métodos para el menú principal
     // Métodos para el administrador
@@ -71,6 +74,7 @@ public:
     bool getRoll() const;
     void setRoll(bool newRoll);
     int getVen() const;
+    void emptyVende(int i);
 };
 
 #endif // CONSTRCINE_H

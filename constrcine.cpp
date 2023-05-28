@@ -19,7 +19,7 @@ ConstrCine::ConstrCine()
 {
     this->admin = new Empleados("Juan","Perez","Administrador","JPerez","A22sad.2");
     this->vende[0] = new Empleados("Juanita","Perez","Vendedora","JuPerez","Juaez2.2");
-    //this->vende[1] = new Empleados("Pepe","Gutierrez","Vendedor","PGuti","aswqerdf.1");
+    this->vende[1] = new Empleados();
     this->vende[2] = new Empleados("Leonardo","Jimenez","Vendedor","LeoMenez","kap12.rt5");
     this->peli[0] = new Pelicula("GDLG","Guardianes de la Galaxia", 150 ,false);
     this->peli[1] = new Pelicula("LHLM","La heredera de la Mafia",100,true);
@@ -333,13 +333,37 @@ bool ConstrCine::maxVende(){
 }
 
 void ConstrCine::setVende(string name, string l_name, string user, string pass){
-    if(vende[0]->getUser()=="null"||""){
+    if(vende[0]->getUser().empty()==true){
     this->vende[0] = new Empleados(name,l_name,"Vendedor",user,pass);
-    }else if(vende[1]->getUser()=="null"||""){
+    }else if(vende[1]->getUser().empty()==true){
     this->vende[1] = new Empleados(name,l_name,"Vendedor",user,pass);
-    }else if(vende[2]->getUser()=="null"||""){
+    }else if(vende[2]->getUser().empty()==true){
     this->vende[2] = new Empleados(name,l_name,"Vendedor",user,pass);
     }
 }
+void ConstrCine::emptyVende(int i){
+    this->vende[i-1] = new Empleados();
+}
+
+string ConstrCine::nameVende(int i)
+{
+    return vende[i]->getNombre();
+}
+
+string ConstrCine::lnameVende(int i)
+{
+    return vende[i]->getApellido();
+}
+
+string ConstrCine::userVende(int i)
+{
+    return vende[i]->getUser();
+}
+
+string ConstrCine::passVende(int i)
+{
+    return vende[i]->getPass();
+}
+
 
 

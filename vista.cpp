@@ -71,7 +71,18 @@ void Vista::menuAdmin(){
                 break;
         case 3:
             mosEmpl();
+            cout << "Deseas Eliminar a algún Vendedor [S/n]: ";
+            cin >> op;
+            if (int(op)==78||int(op)==110){
                 break;
+            }else{
+                cout << "Ingrese el ID del Vendedor: ";
+                cin >> op;
+                opc=cineModa.validarOp(op);
+                cineModa.emptyVende(opc);
+                break;
+            }
+            break;
         case 4:
             cout << "\n --- Cambio de Contraseña --- \n";
             cout << "Ingrese su Usuario: ";
@@ -429,7 +440,27 @@ void Vista::facturacion(int numbo, int peli, vector<string> asie){
 
 void Vista::mosEmpl()
 {
+    string names[3];
+    string l_names[3];
+    string users[3];
+    string pass[3];
 
+    for(int i=0;i<3;i++){
+        names[i]=cineModa.nameVende(i);
+        l_names[i]=cineModa.lnameVende(i);
+        users[i]=cineModa.userVende(i);
+        pass[i]=cineModa.passVende(i);
+    }
+
+    cout << "\n          --- Lista de Empleados ---\n";
+    cout << left << setw(4)<<"ID"<<setw(2)<<"|"<<setw(10)<< "Apellido";
+    cout  <<setw(2)<<"|"<< setw(10)<<"Nombre"<<setw(2)<<"|"<<setw(10)<< "Usuario";
+    cout  <<setw(2)<<"|"<< setw(10)<<"Contraseña"<<endl;
+    for(int i=0;i<3;i++){
+        cout << left << setw(4)<<i+1<<setw(2)<<"|"<<setw(10)<< l_names[i];
+        cout <<setw(2)<<"|"<< setw(10)<<names[i]<<setw(2)<<"|"<<setw(10)<< users[i];
+        cout <<setw(2)<<"|"<< setw(8)<<pass[i]<<endl;
+       }
 }
 
 string Vista::getfecha(){
