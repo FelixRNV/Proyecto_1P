@@ -207,9 +207,43 @@ void Vista::menuCompra(){
     cin >> as;
     if (as=="S"||as=="s"){
         facturacion(numbo,peli,asie);
-        //imprBoleto();
-        //imprFactura();
+
     }
+}
+
+void Vista::imprBoleto(int peli, vector<string> asie,int h){
+    cout << "----- Boleto ------\n";
+    cout << left << setw(4) << "╔";
+    for (int p=0;p<100;p++){
+        cout<<setw(4)<<"═";
+    }
+    cout<<setw(4)<<"╗"<<endl<<setw(4)<<"║";
+    cout<<"Sala: "<<cineModa.idPelis(peli);
+    for (int p=0;p<91;p++){
+        cout<<setw(4)<<" ";
+    }
+    cout<<endl<<setw(4)<<"║"<<"Hora: "<<cineModa.horaPeli(peli,h);
+    for (int p=0;p<84;p++){
+        cout<<setw(4)<<" ";
+    }
+    cout<<endl<<setw(4)<<"║"<<"Asiento(s): ";
+    for (int z=0;z<int(asie.size());z++){
+        cout << asie[z];
+        if (int(asie.size())>1 && z<(int(asie.size())-1)){
+        cout<< " , ";
+        }
+    }
+    if(int(asie.size())==1){
+    for (int p=0;p<85;p++){
+        cout<<setw(4)<<" ";
+    }}else{
+        for (int p=0;p<(2+int(asie.size()*6));p++){
+            cout<<setw(4)<<" ";
+    }}
+    cout<<endl<<setw(4)<<"║"<<"Pelicula: "<<cineModa.namePelis(peli);
+    for (int p=0;p<(100-int(cineModa.namePelis(peli).size()));p++){
+        cout<<setw(4)<<" ";
+}
 }
 
 void Vista::imprFactura(int cli, int peli, vector<string> asie){
@@ -294,8 +328,13 @@ void Vista::facturacion(int numbo, int peli, vector<string> asie){
     cout << endl;
 
     cineModa.facturar(pos,numbo);
-
+    cout << "\nPara Imprimir Factura Presione \"Enter\"...";
+    pausarProgra();
+    clearscreen();
     imprFactura(pos, peli,asie);
+    pausarProgra();
+    clearscreen();
+    imprBoleto(peli,asie;
 }
 
 string Vista::getfecha(){

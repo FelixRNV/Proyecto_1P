@@ -27,7 +27,7 @@ public:
     void mosPelis(); // Muestra la cartelera
     void mosSimPelis(); //Muestra cartelera
     void menuCompra(); //Menu al momento de comprar
-    void imprBoleto(); //Muestra el boleto comprado
+    void imprBoleto(int peli, vector<string> asie, int h); //Muestra el boleto comprado
     void imprFactura(int cli, int peli, vector<string> asie); //Muestra la factura
     string getfecha(); //obtiene la fecha
     void cambiarFunciones(int i); //Cambia a las funciones
