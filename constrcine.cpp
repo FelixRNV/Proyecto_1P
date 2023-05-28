@@ -345,6 +345,11 @@ void ConstrCine::emptyVende(int i){
     this->vende[i-1] = new Empleados();
 }
 
+void ConstrCine::emptyClien(int i)
+{
+    clien.erase(clien.begin()+(i-1));
+}
+
 string ConstrCine::nameVende(int i)
 {
     return vende[i]->getNombre();

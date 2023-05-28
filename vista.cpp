@@ -37,8 +37,9 @@ void Vista::menuAdmin(){
         cout << "1. Cambiar Funciones\n";
         cout << "2. Nuevo Vendedor\n";
         cout << "3. (Ver/Eliminar) Vendedor(es)\n";
-        cout << "4. Cambiar Contraseña\n";
-        cout << "5. Cambiar Usuario\n";
+        cout << "4. Ver Clientes\n";
+        cout << "5. Cambiar Contraseña\n";
+        cout << "6. Cambiar Usuario\n";
         cout << "0. Cerrar Sesión\n";
         cout << "\nIngresar opción: \t";
         cin >> op;
@@ -84,6 +85,20 @@ void Vista::menuAdmin(){
             }
             break;
         case 4:
+            mosClien();
+            cout << "Deseas Eliminar a algún Cliente [S/n]: ";
+            cin >> op;
+            if (int(op)==78||int(op)==110){
+                break;
+            }else{
+                cout << "Ingrese la OPC de Cliente: ";
+                cin >> op;
+                opc=cineModa.validarOp(op);
+                cineModa.emptyClien(opc);
+                break;
+            }
+            break;
+        case 5:
             cout << "\n --- Cambio de Contraseña --- \n";
             cout << "Ingrese su Usuario: ";
             cin >> val;
@@ -98,7 +113,7 @@ void Vista::menuAdmin(){
             }
             cout << "\nSe Actualizó con Exito\n";
                 break;
-        case 5:
+        case 6:
             cout << "\n --- Cambio de Usuario --- \n";
             cout << "Ingrese su Contraseña: ";
             cin >> val;

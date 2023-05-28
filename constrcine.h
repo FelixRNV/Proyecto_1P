@@ -75,6 +75,7 @@ public:
     void setRoll(bool newRoll);
     int getVen() const;
     void emptyVende(int i);
+    void emptyClien(int i);
 };
 
 #endif // CONSTRCINE_H
