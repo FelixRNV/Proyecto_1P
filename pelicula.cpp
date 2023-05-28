@@ -39,6 +39,8 @@ int Pelicula::getSalaID(int h) const
 
 void Pelicula::setSala(int newSala)
 {
+    sal[0].setId(newSala);
+    sal[1].setId(newSala);
     sala = newSala;
 }
 
