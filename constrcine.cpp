@@ -34,12 +34,12 @@ ConstrCine::ConstrCine()
     this->peli[0]->setHora(23,45,1);
     this->peli[1]->setHora(22,05,1);
     this->peli[2]->setHora(21,25,1);
-    this->peli[3]->setHora(20,15,1);
+    this->peli[3]->setHora(21,15,1);
     this->peli[4]->setHora(19,40,1);
     this->peli[0]->setHora(20,22,0);
     this->peli[1]->setHora(18,55,0);
     this->peli[2]->setHora(17,25,0);
-    this->peli[3]->setHora(21,15,0);
+    this->peli[3]->setHora(20,15,0);
     this->peli[4]->setHora(17,40,0);
 }
 
@@ -108,6 +108,10 @@ void ConstrCine::setMovie(string titulo, string id, int du, int sali, int h, int
     sal[i]->setId(sali);
 }
 
+void ConstrCine::setHorario(int i, int h, int hor, int min){
+    peli[i]->setHora(hor,min,h);
+}
+
 void ConstrCine::llenarSala(int i)
 {
     for (int c=0;c<2;c++){
@@ -136,7 +140,7 @@ peli[i]->llenaAsiento(h,fil,co,true);
 }
 
 string ConstrCine::getAsiento(int i,int a, int b, int h){
-   return peli[i]->sabeAsiento(h,a,b) ? to_string(condi) : "O";
+   return peli[i]->sabeAsiento(h,a,b) ? to_string(condi) : "-";
 }
 
 int ConstrCine::encontrarPeli(string a){
