@@ -1,12 +1,12 @@
 #include "constrcine.h"
 
-bool ConstrCine::getRoll() const
-{
+int Factura::numf=0;
+
+bool ConstrCine::getRoll() const{
     return roll;
 }
 
-void ConstrCine::setRoll(bool newRoll)
-{
+void ConstrCine::setRoll(bool newRoll){
     roll = newRoll;
 }
 
@@ -41,6 +41,9 @@ ConstrCine::ConstrCine()
     this->peli[2]->setHora(17,25,0);
     this->peli[3]->setHora(20,15,0);
     this->peli[4]->setHora(17,40,0);
+    clien.push_back(Cliente("Consumidor","Final",999999999,"null@null.com",false));
+    clien.push_back(Cliente("Felix","Navas",1716272560,"depeorenmal1@live.com",false));
+    clien.push_back(Cliente("Paco","Paredes",0712674356,"pacopa@gmail.com",true));
 }
 
 string ConstrCine::namePelis(int i){
@@ -196,6 +199,62 @@ void ConstrCine::setUsuario(string a){
     }else if (ven==3){
         vende[2]->setUser(a);
     }
+}
+
+int ConstrCine::numClien(){
+    return clien.size();
+}
+
+int ConstrCine::lastFactCli(int cli){
+    return clien[cli].getlasFac();
+}
+
+string ConstrCine::clienName(int id){
+    if (id<numClien()){
+    return clien[id].getNombre()+" "+clien[id].getApellido();
+}
+return "Error";
+}
+
+int ConstrCine::clienCI(int id){
+    if (id<numClien()){
+    return clien[id].getCi();
+    }
+    return 0;
+}
+
+string ConstrCine::clienMail(int id){
+    if (id<numClien()){
+    return clien[id].getCorreo();
+}
+return "Error";
+}
+
+void ConstrCine::newClien(string name, string l_name, int ci, string mail, bool ter){
+    clien.push_back(Cliente(name,l_name,ci,mail,ter));
+}
+
+Cliente ConstrCine::encontrarCli(int ci){
+    int a = numClien();
+    for (int k=0;k<a;k++){
+        if (ci==clien[a].getCi()){
+            return clien[a];
+        }
+    }
+    return clien[0];
+}
+
+Cliente ConstrCine::getCli(int i){
+    return clien[i];
+}
+
+void ConstrCine::facturar(int cliente, int numbo){
+    clien[cliente].setHistoria(numbo);
+}
+
+string ConstrCine::dataFact(int cli)
+{
+    return clien[cli].datosFact();
 }
 
 

@@ -14,6 +14,8 @@ public:
     Persona();
     Persona(const string &nombre, const string &apellido);
 
+    const string &getNombre() const;
+    const string &getApellido() const;
 };
 
 #endif // PERSONA_H

@@ -13,22 +13,24 @@ class Factura
 {
 private:
     float tsi; //Total sin impuestos
+    float tot; //Total de la  Factura
+    int fact;
+    vector<Boleto> boletos;
+
+public:
+    static int numf; //Número de factura por cliente
     const int DESC=10; //Porcentaje de Descuento Preferencial
     const int IVA=12; //Porcentaje de IVA
     const float ENTRADA=3.15; //Costo de la Entrada Individual
-    float tot; //Total de la  Factura
-    int numf; //Número de factura por cliente
-    vector<Boleto*> boleto;
-
-public:
     Factura();
+    Factura(int numbo, bool de);
     float getTsi() const;
     void setTsi(float newTsi);
-    int getDESC() const;
-    int getIVA() const;
     float getTot() const;
     void setTot(float newTot);
-    float getENTRADA() const;
+    void setBoleto(int asientos, vector<string> as);
+    int getFact() const;
+    float getDesc();
 };
 
 #endif // FACTURA_H

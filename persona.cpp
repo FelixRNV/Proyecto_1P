@@ -1,7 +1,14 @@
 #include "persona.h"
 
-Persona::Persona()
-{
+const string &Persona::getNombre() const{
+    return nombre;
+}
+
+const string &Persona::getApellido() const{
+    return apellido;
+}
+
+Persona::Persona(){
 
 }
 

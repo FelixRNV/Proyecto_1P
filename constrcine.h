@@ -24,11 +24,7 @@ private:
     Empleados *admin;
     Empleados *vende[3];
     HorayFecha *date=new HorayFecha;
-    char condi=64;
-    int ESI=201;
-    int EII=200;
-    int ESD=187;
-    int EID=188;
+    vector<Cliente> clien;
 
 public:
     ConstrCine();
@@ -50,12 +46,22 @@ public:
     int encontrarPeli(string a);
     void setContraseña(string a);
     void setUsuario(string a);
+    int numClien();
+    int lastFactCli(int cli);
+    string clienName(int id);
+    int clienCI(int id);
+    string clienMail(int id);
+    void newClien(string name, string l_name, int ci, string mail, bool ter);
+    Cliente encontrarCli(int ci);
+    Cliente getCli(int i);
+    void facturar(int cliente, int numbo);
+    string dataFact(int cli);
 
 
     // Métodos para el menú principal
     // Métodos para el administrador
     // Métodos para el vendedor
-
+    static int clientes;
     bool getRoll() const;
     void setRoll(bool newRoll);
 };

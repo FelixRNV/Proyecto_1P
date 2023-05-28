@@ -171,12 +171,13 @@ void Vista::mosSimPelis(){
 }
 
 void Vista::menuCompra(){
-    string bus;
+    string bus,as;
     int peli;
     int hori;
     int numbo;
-    string asie;
+    vector<string> asie;
     vector<char> sep;
+    Cliente cli;
     mosPelis();
     cout << "Ingrese el ID de la pelicula: ";
     cin >> bus;
@@ -189,11 +190,112 @@ void Vista::menuCompra(){
     mosSala(peli,hori);
     for (int z=0;z<numbo;z++){
         cout << "Escoja el asiento "<< z+1 <<": ";
-        cin >> asie;
-        sep=cineModa.getAsSep(asie);
+        cin>>as;
+        asie.push_back(string(as));
+        sep=cineModa.getAsSep(as);
         cineModa.selecAsiento(peli,hori,sep);
     }
+    cout << "\nLos asientos escogidos son: ";
+    for (int z=0;z<int(asie.size());z++){
+        cout << asie[z];
+        if (int(asie.size())>1 && z<(int(asie.size())-1)){
+        cout<< " , ";
+        }
+    }
+    cout << endl;
+    cout << "Confirma la selección S-> Seguir, N-> Menú : ";
+    cin >> as;
+    if (as=="S"||as=="s"){
+        facturacion(numbo,peli,asie);
+        //imprBoleto();
+        //imprFactura();
+    }
+}
 
+void Vista::imprFactura(int cli, int peli, vector<string> asie){
+        cout << "\n ----- ------ Cine Moda ------ -----\n";
+        cout << "Factura Número: " << cineModa.lastFactCli(cli)<<endl;
+        cout << "Cliente: " << cineModa.clienName(cli) << endl;
+        cout << "C.I.: " << cineModa.clienCI(cli) << endl;
+        cout << "E-mail: " << cineModa.clienMail(cli) << endl;
+        cout << "---- ---- ---- ---- ---- ---- ---- ----\n";
+        cout << "Película: "<< cineModa.namePelis(peli) << endl;
+        cout << "Asientos: ";
+        for (int z=0;z<int(asie.size());z++){
+            cout << asie[z];
+            if (int(asie.size())>1 && z<(int(asie.size())-1)){
+            cout<< " , ";
+            }
+        }
+        cout << endl;
+        cout << cineModa.dataFact(cli);
+}
+
+void Vista::facturacion(int numbo, int peli, vector<string> asie){
+    int op, pos;
+    string name, l_name, email,te;
+    int ci;
+    bool ter;
+    Cliente cli;
+    cout << "\nSeleccione la opción de cliente: \n";
+    cout << "\n1. Consumidor Final";
+    cout << "\n2. Buscar Cliente";
+    cout << "\n3. Cliente Nuevo";
+    cout << "\n4. Ver Clientes";
+    cout << "\nSelccionar opción: ";
+    cin >> op;
+    switch(op){
+    case 1:
+        pos=0;
+        break;
+    case 2:
+        cout << "Ingrese el CI del Cliente: ";
+        cin >> ci;
+        cli=cineModa.encontrarCli(ci);
+        ci=cli.getCi();
+        for (int l=0;l<cineModa.numClien();l++){
+            if (ci==cineModa.clienCI(l)){
+                pos=l;
+            }else {
+                pos=0;
+            }
+        }
+        break;
+    case 3:
+        cout << "\nIngrese el Nombre: ";
+        cin >> name;
+        cout << "\nIngrese el Apellido: ";
+        cin >> l_name;
+        cout << "\nIngrese el CI: ";
+        cin >> ci;
+        cout << "\nIngrese el correo: ";
+        cin >> email;
+        cout << "\nTiene tercera edad [S/n]: ";
+        cin >> te;
+        if (te=="S"||te=="s"){
+            ter=true;
+        }else{
+            ter=false;
+        }
+        cineModa.newClien(name,l_name,ci,email,ter);
+        pos=cineModa.numClien();
+        pos=pos-1;
+        break;
+    case 4:
+        mosClien();
+        cout << "Ingresar la OPC que desea: ";
+        cin >> ci;
+        pos=ci-1;
+        break;
+    default:
+        pos=-1;
+        break;
+    }
+    cout << endl;
+
+    cineModa.facturar(pos,numbo);
+
+    imprFactura(pos, peli,asie);
 }
 
 string Vista::getfecha(){
@@ -259,8 +361,21 @@ void Vista::mosSala(int i, int h){
         for (int j=0;j<5;j++){
             cout << setw(4) << cineModa.getAsiento(i,k,j,h);
         }
-    cout << endl;
+        cout << endl;
     }}
+
+void Vista::mosClien(){
+    int a=cineModa.numClien();
+    vector<string> namescl;
+    for (int k=0;k<a;k++){
+        namescl.push_back(string(cineModa.clienName(k)));
+    }
+
+    cout << left << setw(5)<<"Opc" << setw(8) << "Nombres"<<endl;
+    for (int k=0;k<a;k++){
+        cout << left << setw(5)<<to_string(k+1)<< setw(8)<<namescl[k]<<endl;
+    }
+}
 
 
 void Vista::clearscreen(){

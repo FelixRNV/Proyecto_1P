@@ -8,13 +8,7 @@ void Factura::setTsi(float newTsi){
     tsi = newTsi;
 }
 
-int Factura::getDESC() const{
-    return DESC;
-}
 
-int Factura::getIVA() const{
-    return IVA;
-}
 
 float Factura::getTot() const{
     return tot;
@@ -24,9 +18,29 @@ void Factura::setTot(float newTot){
     tot = newTot;
 }
 
-float Factura::getENTRADA() const{
-    return ENTRADA;
+
+void Factura::setBoleto(int asientos, vector<string> as){
+    boletos.push_back(Boleto(asientos,as));
+}
+
+int Factura::getFact() const
+{
+    return fact;
+}
+
+float Factura::getDesc(){
+ return DESC;
 }
 
 Factura::Factura(){
+}
+
+Factura::Factura(int numbo, bool de){
+    numf=numf+1;
+    tsi=ENTRADA*numbo;
+    if (de==true){
+        tsi=ENTRADA*numbo*0.9;
+    }
+    tot=(tsi*IVA/100)+tsi;
+    fact=numf;
 }

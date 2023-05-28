@@ -28,12 +28,13 @@ public:
     void mosSimPelis(); //Muestra cartelera
     void menuCompra(); //Menu al momento de comprar
     void imprBoleto(); //Muestra el boleto comprado
-    void imprFactura(); //Muestra la factura
+    void imprFactura(int cli, int peli, vector<string> asie); //Muestra la factura
     string getfecha(); //obtiene la fecha
     void cambiarFunciones(int i); //Cambia a las funciones
     void mosHorarios(int i); //Muestra la Horarios de una Pelicula
-    void mosSala(int i,int h);
-
+    void mosSala(int i,int h); //Muestra el estado de la sala
+    void mosClien();    //Muestra a todos los clientes registrados
+    void facturacion(int numbo, int peli, vector<string> asie);
     void clearscreen();
     void pausarProgra();
 };
