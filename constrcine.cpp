@@ -19,7 +19,7 @@ ConstrCine::ConstrCine()
 {
     this->admin = new Empleados("Juan","Perez","Administrador","JPerez","A22sad.2");
     this->vende[0] = new Empleados("Juanita","Perez","Vendedora","JuPerez","Juaez2.2");
-    this->vende[1] = new Empleados("Pepe","Gutierrez","Vendedor","PGuti","aswqerdf.1");
+    //this->vende[1] = new Empleados("Pepe","Gutierrez","Vendedor","PGuti","aswqerdf.1");
     this->vende[2] = new Empleados("Leonardo","Jimenez","Vendedor","LeoMenez","kap12.rt5");
     this->peli[0] = new Pelicula("GDLG","Guardianes de la Galaxia", 150 ,false);
     this->peli[1] = new Pelicula("LHLM","La heredera de la Mafia",100,true);
@@ -319,6 +319,27 @@ string ConstrCine::passEmpl()
         return vende[2]->getPass();
     }
     return "null";
+}
+
+bool ConstrCine::maxVende(){
+    if(vende[0]->getUser()=="null"||""){
+        return false;
+    }else if(vende[1]->getUser()=="null"||""){
+        return false;
+    }else if(vende[2]->getUser()=="null"||""){
+        return false;
+    }
+    return true;
+}
+
+void ConstrCine::setVende(string name, string l_name, string user, string pass){
+    if(vende[0]->getUser()=="null"||""){
+    this->vende[0] = new Empleados(name,l_name,"Vendedor",user,pass);
+    }else if(vende[1]->getUser()=="null"||""){
+    this->vende[1] = new Empleados(name,l_name,"Vendedor",user,pass);
+    }else if(vende[2]->getUser()=="null"||""){
+    this->vende[2] = new Empleados(name,l_name,"Vendedor",user,pass);
+    }
 }
 
 

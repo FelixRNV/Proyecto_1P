@@ -60,6 +60,8 @@ public:
     int validarOp(char op);
     string nameEmpl();
     string passEmpl();
+    bool maxVende();
+    void setVende(string name, string l_name, string user, string pass);
 
 
     // Métodos para el menú principal

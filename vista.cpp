@@ -29,13 +29,14 @@ void Vista::menuAdmin(){
     char op;
     int opc;
     string val;
+    string na,la,pa,us;
     do{
         cout << "          --- CineModá ---" << endl;
         cout << "\nPrograma del Cine\n";
 
         cout << "1. Cambiar Funciones\n";
         cout << "2. Nuevo Vendedor\n";
-        cout << "3. Eliminar Vendedor\n";
+        cout << "3. (Ver/Eliminar) Vendedor(es)\n";
         cout << "4. Cambiar Contraseña\n";
         cout << "5. Cambiar Usuario\n";
         cout << "0. Cerrar Sesión\n";
@@ -51,10 +52,25 @@ void Vista::menuAdmin(){
             cambiarFunciones(i);
                 break;
         case 2:
+            if (cineModa.maxVende()==false){
+                cout << "Proceda a Ingresar los datos del  Vendedor\n";
+                cout << "Ingrese Nombre: ";
+                cin >> na;
+                cout << "Ingrese Apellido: ";
+                cin >> la;
+                cout << "Ingrese Usuario: ";
+                cin >> us;
+                cout << "Ingrese Contraseña: ";
+                cin >> pa;
+                cineModa.setVende(na,la,us,pa);
+                cout << endl << "Nuevo Vendedor Creado\n";
 
+            }else{
+            cout << "\nSólo se permiten 3 vendedores\n";
+            }
                 break;
         case 3:
-
+            mosEmpl();
                 break;
         case 4:
             cout << "\n --- Cambio de Contraseña --- \n";
@@ -409,6 +425,11 @@ void Vista::facturacion(int numbo, int peli, vector<string> asie){
     imprFactura(pos, peli,asie);
     pausarProgra();
     clearscreen();
+}
+
+void Vista::mosEmpl()
+{
+
 }
 
 string Vista::getfecha(){

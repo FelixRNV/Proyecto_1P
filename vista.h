@@ -35,6 +35,7 @@ public:
     void mosSala(int i,int h); //Muestra el estado de la sala
     void mosClien();    //Muestra a todos los clientes registrados
     void facturacion(int numbo, int peli, vector<string> asie);
+    void mosEmpl(); //Muestra los datos de todos los vendedores
     void clearscreen();
     void pausarProgra();
 };
