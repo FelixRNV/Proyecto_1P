@@ -31,7 +31,7 @@ public:
     string namePelis(int i);
     string getfecha();
     string idPelis(int i);
-    int idSala(int i);
+    int idSala(int i,int h);
     int duraPeli(int i);
     string estrenoPeli(int i);
     string horaPeli(int i, int h);

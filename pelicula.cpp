@@ -32,9 +32,9 @@ void Pelicula::setEstreno(bool newEstreno){
     estreno = newEstreno;
 }
 
-int Pelicula::getSala() const
+int Pelicula::getSalaID(int h) const
 {
-    return sala;
+    return sal[h].getId();
 }
 
 void Pelicula::setSala(int newSala)

@@ -31,7 +31,7 @@ public:
     void setTitulo(const string &newTitulo);
     void setDuracion(int newDuracion);
     void setEstreno(bool newEstreno);
-    int getSala() const;
+    int getSalaID(int h) const;
     void setSala(int newSala);
     void setHora(int ho,int min,int i);
     string getHora(int i);

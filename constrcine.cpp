@@ -58,8 +58,8 @@ string ConstrCine::idPelis(int i){
     return peli[i]->getId();
 }
 
-int ConstrCine::idSala(int i){
-    return peli[i]->getSala();
+int ConstrCine::idSala(int i,int h){
+    return peli[i]->getSalaID(h);
 }
 
 int ConstrCine::duraPeli(int i){
