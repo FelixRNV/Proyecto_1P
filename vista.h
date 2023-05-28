@@ -4,14 +4,20 @@
 #include <iostream>
 #include <string.h>
 #include <iomanip>
+#include <stdio.h>
 
 using namespace std;
 
 #include <constrcine.h>
 
+
 class Vista
 {
 private:
+    int ESI=201;
+    int EII=200;
+    int ESD=187;
+    int EID=188;
     ConstrCine cineModa;
 public:
     Vista();

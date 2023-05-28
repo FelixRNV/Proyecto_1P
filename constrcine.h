@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <string.h>
+#include <stdio.h>
+#include <vector>
 using namespace std;
 
 #include <empleados.h>
@@ -23,6 +25,10 @@ private:
     Empleados *vende[3];
     HorayFecha *date=new HorayFecha;
     char condi=64;
+    int ESI=201;
+    int EII=200;
+    int ESD=187;
+    int EID=188;
 
 public:
     ConstrCine();
@@ -40,6 +46,7 @@ public:
     void llenarSala(int i);
     void selecAsiento(int i, int j,int p,string k);
     string getAsiento(int i,int a, int b, int h);
+    vector<char> getAsSep (string k);
     int encontrarPeli(string a);
     void setContraseña(string a);
     void setUsuario(string a);

@@ -93,7 +93,7 @@ void Vista::menuVende(){
 
                 break;
         case 2:
-
+            menuCompra();
                 break;
         case 3:
 
@@ -176,6 +176,7 @@ void Vista::menuCompra(){
     int hori;
     int numbo;
     string asie;
+    vector<char> sep;
     mosPelis();
     cout << "Ingrese el ID de la pelicula: ";
     cin >> bus;
@@ -186,6 +187,12 @@ void Vista::menuCompra(){
     cout << "\nIngrese la opción del horario: ";
     cin >> hori;
     mosSala(peli,hori);
+    for (int z=0;z<numbo;z++){
+        cout << "Escoja el asiento "<< z+1 <<": ";
+        cin >> asie;
+        sep=cineModa.getAsSep(asie);
+
+    }
 
 }
 
@@ -229,14 +236,14 @@ void Vista::cambiarFunciones(int i)
 
 void Vista::mosHorarios(int i){
     cout << "\nLos Hoararios Disponibles\n";
-    cout << "1. "<< cineModa.horaPeli(i,0);
-    cout << "2. "<< cineModa.horaPeli(i,1);
+    cout << "1. "<< cineModa.horaPeli(i,0)<<endl;
+    cout << "2. "<< cineModa.horaPeli(i,1)<<endl;
 }
 
 void Vista::mosSala(int i, int h){
-    cout << "--- Sala "<<h+1<<" ---";
-    cout << left<<setw(4)<<" 1 "<< setw(4)<<" 2 ";
-    cout << setw(4)<<" 3 "<< setw(4)<<" 4 "<< setw(4)<<" 5 ";
+    cout << "--- Sala "<<cineModa.idSala(i)<<" ---\n";
+    cout << left<<setw(4)<<" "<<setw(4)<<"1"<< setw(4)<<"2";
+    cout << setw(4)<<"3"<< setw(4)<<"4"<< setw(4)<<"5"<<endl;
     for (int k=0;k<5;k++){
         if (k==0){
             cout << left << setw(4) << "A";
@@ -250,11 +257,11 @@ void Vista::mosSala(int i, int h){
             cout << left << setw(4) << "E";
         }
         for (int j=0;j<5;j++){
-            cout << left << setw(4) << cineModa.getAsiento(i,k,j,h);
+            cout << setw(4) << cineModa.getAsiento(i,k,j,h);
         }
     cout << endl;
-    }
-}
+    }}
+
 
 void Vista::clearscreen(){
 #ifdef WINDOWS

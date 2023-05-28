@@ -140,7 +140,17 @@ peli[i]->llenaAsiento(h,fil,co,true);
 }
 
 string ConstrCine::getAsiento(int i,int a, int b, int h){
-   return peli[i]->sabeAsiento(h,a,b) ? to_string(condi) : "-";
+    return peli[i]->sabeAsiento(h,a,b) ? "X" : "-";
+}
+
+vector<char> ConstrCine::getAsSep(string k){
+    vector<char> d;
+
+    for (size_t i=0;i<k.length();++i){
+    d.push_back(k[i]);
+    }
+
+    return d;
 }
 
 int ConstrCine::encontrarPeli(string a){
