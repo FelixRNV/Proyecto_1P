@@ -10,6 +10,11 @@ void ConstrCine::setRoll(bool newRoll){
     roll = newRoll;
 }
 
+int ConstrCine::getVen() const
+{
+    return ven;
+}
+
 ConstrCine::ConstrCine()
 {
     this->admin = new Empleados("Juan","Perez","Administrador","JPerez","A22sad.2");
@@ -174,7 +179,7 @@ int ConstrCine::encontrarPeli(string a){
         return i;
     }
 }
-    return 0;
+    return 5;
 }
 
 void ConstrCine::setContraseña(string a){
@@ -255,6 +260,65 @@ void ConstrCine::facturar(int cliente, int numbo){
 string ConstrCine::dataFact(int cli)
 {
     return clien[cli].datosFact();
+}
+
+bool ConstrCine::validarAs(string k){
+    vector<char> d;
+    d=getAsSep(k);
+    if (d.size()==2){
+        if (int(d[1])==49||int(d[1])==50||int(d[1])==51||int(d[1])==52||int(d[1])==53){
+            if(int(d[0])==65||int(d[0])==66||int(d[0])==67||
+                    int(d[0])==68||int(d[0])==69||int(d[0])==97
+                    ||int(d[0])==98||int(d[0])==99||int(d[0])==100
+                    ||int(d[0])==101){
+            return true;
+        }}
+    }else{
+        return false;
+    }
+    return false;
+}
+
+int ConstrCine::validarOp(char op)
+{
+    int p=0;
+    if (isdigit(int(op))==1){
+        for(int i=48;i<58;i++){
+            if (int(op)==i){
+                return p;
+            }
+            p=p+1;
+        }
+
+    }
+    return 99;
+}
+
+string ConstrCine::nameEmpl(){
+    if (ven==0){
+        return admin->getUser();
+    }else if (ven==1){
+        return vende[0]->getUser();
+    }else if (ven==2){
+        return vende[1]->getUser();
+    }else if (ven==3){
+        return vende[2]->getUser();
+    }
+    return "null";
+}
+
+string ConstrCine::passEmpl()
+{
+    if (ven==0){
+        return admin->getPass();
+    }else if (ven==1){
+        return vende[0]->getPass();
+    }else if (ven==2){
+        return vende[1]->getPass();
+    }else if (ven==3){
+        return vende[2]->getPass();
+    }
+    return "null";
 }
 
 

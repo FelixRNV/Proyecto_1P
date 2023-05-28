@@ -7,7 +7,7 @@ void Vista::menuIni(){
     string usua;
     string pas;
     bool men;
-    cout << "Ingrese Usuario: ";
+    cout << "\nIngrese Usuario: ";
     cin >> usua;
     cout << "Ingrese Contraseña: ";
     cin >> pas;
@@ -26,7 +26,9 @@ void Vista::menuIni(){
 }
 
 void Vista::menuAdmin(){
+    char op;
     int opc;
+    string val;
     do{
         cout << "          --- CineModá ---" << endl;
         cout << "\nPrograma del Cine\n";
@@ -38,7 +40,8 @@ void Vista::menuAdmin(){
         cout << "5. Cambiar Usuario\n";
         cout << "0. Cerrar Sesión\n";
         cout << "\nIngresar opción: \t";
-        cin >> opc;
+        cin >> op;
+        opc=cineModa.validarOp(op);
         switch(opc){
         case 1:
             int i;
@@ -46,7 +49,6 @@ void Vista::menuAdmin(){
             cout << "Ingrese opción de pelicula a cambiar: \t";
             cin >> i;
             cambiarFunciones(i);
-
                 break;
         case 2:
 
@@ -55,10 +57,34 @@ void Vista::menuAdmin(){
 
                 break;
         case 4:
-
+            cout << "\n --- Cambio de Contraseña --- \n";
+            cout << "Ingrese su Usuario: ";
+            cin >> val;
+            if(val!=cineModa.nameEmpl()){
+                cout << "\n-- Usuario Invalido --\n";
+                cout << "No se puede seguir con el proceso\n";
+                break;
+            }else {
+            cout << "Ingrese su nueva Contraseña: ";
+            cin >> val;
+            cineModa.setContraseña(val);
+            }
+            cout << "\nSe Actualizó con Exito\n";
                 break;
         case 5:
-
+            cout << "\n --- Cambio de Usuario --- \n";
+            cout << "Ingrese su Contraseña: ";
+            cin >> val;
+            if(val!=cineModa.passEmpl()){
+                cout << "\n-- Contraseña Invalida --\n";
+                cout << "No se puede seguir con el proceso\n";
+                break;
+            }else {
+            cout << "Ingrese su nuevo Usuario: ";
+            cin >> val;
+            cineModa.setUsuario(val);
+            }
+            cout << "\nSe Actualizó con Existo\n";
                 break;
         case 0:
 
@@ -74,6 +100,8 @@ void Vista::menuAdmin(){
 }
 
 void Vista::menuVende(){
+    char op;
+    string val;
     int opc;
     do{
 
@@ -86,7 +114,8 @@ void Vista::menuVende(){
         cout << "4. Cambiar Usuario\n";
         cout << "0. Cerrar Sesión\n";
         cout << "\nIngresar opción: \t";
-        cin >> opc;
+        cin >> op;
+        opc=cineModa.validarOp(op);
         switch(opc){
         case 1:
             mosPelis();
@@ -95,9 +124,34 @@ void Vista::menuVende(){
             menuCompra();
                 break;
         case 3:
-
+            cout << "\n --- Cambio de Contraseña --- \n";
+            cout << "Ingrese su Usuario: ";
+            cin >> val;
+            if(val!=cineModa.nameEmpl()){
+                cout << "\n-- Usuario Invalido --\n";
+                cout << "No se puede seguir con el proceso\n";
+                break;
+            }else {
+            cout << "Ingrese su nueva Contraseña: ";
+            cin >> val;
+            cineModa.setContraseña(val);
+            }
+            cout << "\nSe Actualizó con Exito\n";
                 break;
         case 4:
+            cout << "--- Cambio de Usuario ---\n";
+            cout << "Ingrese su Contraseña: ";
+            cin >> val;
+            if(val!=cineModa.passEmpl()){
+                cout << "\n-- Contraseña Invalida --\n";
+                cout << "No se puede seguir con el proceso\n";
+                break;
+            }else {
+            cout << "Ingrese su nuevo Usuario: ";
+            cin >> val;
+            cineModa.setUsuario(val);
+            }
+            cout << "\nSe Actualizó con Exito\n";
                 break;
         case 0:
             break;
@@ -174,25 +228,35 @@ void Vista::menuCompra(){
     int peli;
     int hori;
     int numbo;
+    char ho;
     vector<string> asie;
     vector<char> sep;
     Cliente cli;
     mosPelis();
+    do{
     cout << "Ingrese el ID de la pelicula: ";
     cin >> bus;
     peli=cineModa.encontrarPeli(bus);
+    }while(peli==5);
     cout << "Ingrese el número de boletos: ";
     cin >> numbo;
     mosHorarios(peli);
+    do{
     cout << "\nIngrese la opción del horario: ";
-    cin >> hori;
+    cin >> ho;
+    hori=cineModa.validarOp(ho);
+    }while(isdigit(ho)==0);
     mosSala(peli,hori);
     for (int z=0;z<numbo;z++){
+        do{
         cout << "Escoja el asiento "<< z+1 <<": ";
         cin>>as;
+        }while(cineModa.validarAs(as)!=true);
+
         asie.push_back(string(as));
         sep=cineModa.getAsSep(as);
         cineModa.selecAsiento(peli,hori,sep);
+
     }
     cout << "\nLos asientos escogidos son: ";
     for (int z=0;z<int(asie.size());z++){
@@ -208,6 +272,8 @@ void Vista::menuCompra(){
         facturacion(numbo,peli,asie);
         cout << "\n---- Impresión del Boleto ---\n";
         imprBoleto(peli,asie,hori);
+    }else{
+    cout << "\nHa salido del Apartado de Compra\n";
     }
 }
 
@@ -271,8 +337,9 @@ void Vista::imprFactura(int cli, int peli, vector<string> asie){
 }
 
 void Vista::facturacion(int numbo, int peli, vector<string> asie){
-    int op, pos;
+    int opc, pos;
     string name, l_name, email,te;
+    char op;
     int ci;
     bool ter;
     Cliente cli;
@@ -281,9 +348,12 @@ void Vista::facturacion(int numbo, int peli, vector<string> asie){
     cout << "\n2. Buscar Cliente";
     cout << "\n3. Cliente Nuevo";
     cout << "\n4. Ver Clientes";
+    do{
     cout << "\nSelccionar opción: ";
     cin >> op;
-    switch(op){
+    }while (isdigit(op)==0);
+    opc=cineModa.validarOp(op);
+    switch(opc){
     case 1:
         pos=0;
         break;

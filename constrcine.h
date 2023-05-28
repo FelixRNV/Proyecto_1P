@@ -56,6 +56,10 @@ public:
     Cliente getCli(int i);
     void facturar(int cliente, int numbo);
     string dataFact(int cli);
+    bool validarAs(string k);
+    int validarOp(char op);
+    string nameEmpl();
+    string passEmpl();
 
 
     // Métodos para el menú principal
@@ -64,6 +68,7 @@ public:
     static int clientes;
     bool getRoll() const;
     void setRoll(bool newRoll);
+    int getVen() const;
 };
 
 #endif // CONSTRCINE_H
