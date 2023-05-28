@@ -123,18 +123,30 @@ void ConstrCine::llenarSala(int i)
     }
 }
 
-void ConstrCine::selecAsiento(int i, int co,int h, string k){
+void ConstrCine::selecAsiento(int i,int h,vector<char> k){
 int fil=0;
-if (k=="a"||k=="A"){
+int co=0;
+if (k[0]=='a'||k[0]=='A'){
     fil=0;
-}else if (k=="b"||k=="B"){
+}else if (k[0]=='b'||k[0]=='B'){
     fil=1;
-}else if (k=="c"||k=="C"){
+}else if (k[0]=='c'||k[0]=='C'){
     fil=2;
-}else if (k=="d"||k=="D"){
+}else if (k[0]=='d'||k[0]=='D'){
     fil=3;
-}else if (k=="e"||k=="E"){
+}else if (k[0]=='e'||k[0]=='E'){
     fil=4;
+}
+if (k[1]=='1'){
+    co=0;
+}else if (k[1]=='2'){
+    co=1;
+}else if (k[1]=='3'){
+    co=2;
+}else if (k[1]=='4'){
+    co=3;
+}else if (k[1]=='5'){
+    co=4;
 }
 peli[i]->llenaAsiento(h,fil,co,true);
 }

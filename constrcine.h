@@ -44,7 +44,7 @@ public:
     void setMovie(string titulo,string id,int du,int sal,int h, int m, int i);
     void setHorario (int i,int h, int hor, int min);
     void llenarSala(int i);
-    void selecAsiento(int i, int j,int p,string k);
+    void selecAsiento(int i, int h,vector<char> k);
     string getAsiento(int i,int a, int b, int h);
     vector<char> getAsSep (string k);
     int encontrarPeli(string a);

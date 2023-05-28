@@ -191,7 +191,7 @@ void Vista::menuCompra(){
         cout << "Escoja el asiento "<< z+1 <<": ";
         cin >> asie;
         sep=cineModa.getAsSep(asie);
-
+        cineModa.selecAsiento(peli,hori,sep);
     }
 
 }
