@@ -37,7 +37,7 @@ void Vista::menuAdmin(){
         cout << "1. Cambiar Funciones\n";
         cout << "2. Nuevo Vendedor\n";
         cout << "3. (Ver/Eliminar) Vendedor(es)\n";
-        cout << "4. Ver Clientes\n";
+        cout << "4. (Ver/Eliminar) Clientes\n";
         cout << "5. Cambiar Contraseña\n";
         cout << "6. Cambiar Usuario\n";
         cout << "0. Cerrar Sesión\n";
