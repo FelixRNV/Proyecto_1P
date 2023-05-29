@@ -250,7 +250,7 @@ void Vista::mosSimPelis(){
     }
 
     cout << "\n---- Cartelera ----\n";
-    cout << left << setw(10) << "Opción "<< setw(2) << "|";
+    cout << left << setw(11) << "Opción "<< setw(2) << "|";
     cout << setw(8) << "Sala" << setw(2) << "|";
     cout << setw(8) << "ID" << setw(2) << "|";
     cout << setw(8) << "Película"<<endl;
@@ -290,9 +290,10 @@ void Vista::menuCompra(){
     }while(isdigit(ho)==0);
     mosSala(peli,hori);
     for (int z=0;z<numbo;z++){
-        do{
+        do{do{
         cout << "Escoja el asiento "<< z+1 <<": ";
         cin>>as;
+            }while(cineModa.validarPos(as,peli,hori)!=true);
         }while(cineModa.validarAs(as)!=true);
 
         asie.push_back(string(as));
@@ -315,6 +316,10 @@ void Vista::menuCompra(){
         cout << "\n---- Impresión del Boleto ---\n";
         imprBoleto(peli,asie,hori);
     }else{
+        for (int z=0;z<int(asie.size());z++){
+            sep=cineModa.getAsSep(asie[z]);
+            cineModa.emptyAs(peli,hori,sep);
+        }
     cout << "\nHa salido del Apartado de Compra\n";
     }
 }
@@ -495,7 +500,7 @@ void Vista::cambiarFunciones(int i)
     cin >> est;
     cout << "Duración de la cinta: ";
     cin >> dra;
-    cout << "Sale de Proyección: ";
+    cout << "Sala de Proyección: ";
     cin >> sala;
     cout << "Ingrese el horario de proyección 1:\n";
     cout << "Hora: ";
@@ -504,9 +509,9 @@ void Vista::cambiarFunciones(int i)
     cin >> m;
     cineModa.setMovie(tit,ids,dra,sala,h,m,i);
     cout << "Ingrese el horario de proyección 2:\n";
-    cout << "Hora: ";
+    cout << "Hora [13-23]: ";
     cin >> h;
-    cout << "Minutos: ";
+    cout << "Minutos [00-59]: ";
     cin >> m;
     cineModa.setHorario(i,1,h,m);
     if (est=="S"||est=="s"){

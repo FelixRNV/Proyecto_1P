@@ -66,6 +66,7 @@ public:
     string lnameVende(int i);
     string userVende(int i);
     string passVende(int i);
+    bool validarPos(string as,int pel, int h);
 
     // Métodos para el menú principal
     // Métodos para el administrador
@@ -76,6 +77,7 @@ public:
     int getVen() const;
     void emptyVende(int i);
     void emptyClien(int i);
+    void emptyAs(int pel,int h, vector<char> k);
 };
 
 #endif // CONSTRCINE_H

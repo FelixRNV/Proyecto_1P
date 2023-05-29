@@ -350,6 +350,35 @@ void ConstrCine::emptyClien(int i)
     clien.erase(clien.begin()+(i-1));
 }
 
+void ConstrCine::emptyAs(int pel, int h, vector<char> k)
+{
+    int fil=0;
+    int co=0;
+    if (k[0]=='a'||k[0]=='A'){
+        fil=0;
+    }else if (k[0]=='b'||k[0]=='B'){
+        fil=1;
+    }else if (k[0]=='c'||k[0]=='C'){
+        fil=2;
+    }else if (k[0]=='d'||k[0]=='D'){
+        fil=3;
+    }else if (k[0]=='e'||k[0]=='E'){
+        fil=4;
+    }
+    if (k[1]=='1'){
+        co=0;
+    }else if (k[1]=='2'){
+        co=1;
+    }else if (k[1]=='3'){
+        co=2;
+    }else if (k[1]=='4'){
+        co=3;
+    }else if (k[1]=='5'){
+        co=4;
+    }
+    peli[pel]->llenaAsiento(h,fil,co,false);
+}
+
 string ConstrCine::nameVende(int i)
 {
     return vende[i]->getNombre();
@@ -368,6 +397,41 @@ string ConstrCine::userVende(int i)
 string ConstrCine::passVende(int i)
 {
     return vende[i]->getPass();
+}
+
+bool ConstrCine::validarPos(string as, int pel, int h)
+{
+    int fil=0,co=0;
+    vector<char> k;
+    k=getAsSep(as);
+
+    if (k[0]=='a'||k[0]=='A'){
+        fil=0;
+    }else if (k[0]=='b'||k[0]=='B'){
+        fil=1;
+    }else if (k[0]=='c'||k[0]=='C'){
+        fil=2;
+    }else if (k[0]=='d'||k[0]=='D'){
+        fil=3;
+    }else if (k[0]=='e'||k[0]=='E'){
+        fil=4;
+    }
+    if (k[1]=='1'){
+        co=0;
+    }else if (k[1]=='2'){
+        co=1;
+    }else if (k[1]=='3'){
+        co=2;
+    }else if (k[1]=='4'){
+        co=3;
+    }else if (k[1]=='5'){
+        co=4;
+    }
+
+    if(peli[pel]->sabeAsiento(h,fil,co)==true){
+    return false;
+    }
+    return true;
 }
 
 
