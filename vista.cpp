@@ -370,6 +370,7 @@ void Vista::imprFactura(int cli, int peli, vector<string> asie){
         cout << "Cliente: " << cineModa.clienName(cli) << endl;
         cout << "C.I.: " << cineModa.clienCI(cli) << endl;
         cout << "E-mail: " << cineModa.clienMail(cli) << endl;
+        cout << "Fecha: "<< cineModa.getfecha()<<endl;
         cout << "---- ---- ---- ---- ---- ---- ---- ----\n";
         cout << "Película: "<< cineModa.namePelis(peli) << endl;
         cout << "Asientos: ";

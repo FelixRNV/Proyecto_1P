@@ -14,10 +14,6 @@ using namespace std;
 class Vista
 {
 private:
-    int ESI=201;
-    int EII=200;
-    int ESD=187;
-    int EID=188;
     ConstrCine cineModa;
 public:
     Vista();
